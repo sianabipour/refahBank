@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+  <!-- TOP IMAGE -->
+  <div class="page-head">
+    <div class="inner-desc">
+      <div class="container">
+        <h1 class="page-title">درباره‌ما</h1>
+        <span class="post-subtitle page-subtitle">تاریخ تاسیس: {{ page.start_date }}</span>
+      </div>
+    </div>
+  </div>
+  <!-- /TOP IMAGE -->
+  <!-- PAGE CONTENT -->
+  <div class="page-holder custom-page-template page-full fullscreen-page clearfix text-center" dir="rtl">
+    <!-- SECTION 1 -->
+    <section class="section-holder">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 margin-bm54">
+            <img class="img-fluid d-block mx-auto margin-b32" style="width:375px;height:105px;" src="{{ page.image.url }}" alt="{{ page.title }}" />
+            <div class="text-right">
+              {% if page.founder %}
+                <div class="pcolor margin-b16">اداره حوزه مدیریت</div>
+                <h5 class="widgettitle">{{ page.founder }}</h5>
+                <hr />
+              {% endif %}
+              {% if page.phone %}
+                <div class="pcolor margin-b16">شماره تماس</div>
+                <em>{{ page.phone }}</em>
+              {% endif %}
+              {% if page.link %}
+                <a href="{{ page.link }}" class="d-block mt-3">لینک سایت</a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <h2 class="section-heading-title margin-b16">{{ page.title }}</h2>
+            {{ page.content|safe }}
+          </div>
+        </div>
+        <!-- /row -->
+      </div>
+      <!-- /container -->
+    </section>
+    <!-- /SECTION 1 -->
+    <!-- SECTION 5 -->
+    <section class="parallax section-holder section-home35" style="background-image:url('{% static 'images/mobileBefore.jpg' %}');">
+      <div class="container parallax-content">
+        <div class="row">
+          <div class="col alignc" dir="rtl">
+            <span class="heading-subtitle white">ارسال درخواست</span>
+            <h2 class="section-heading-title">درخواست خود را برای ما بفرستید</h2>
+            <div id="contact-form-holder text-right">
+              <form method="post" id="contact-form">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-lg-4 margin-b32">
+                    <input type="text" name="name" class="comm-field" placeholder="نام و نام خانوادگی" required />
+                  </div>
+                  <div class="col-lg-4 margin-b32">
+                    <input type="text" name="email" class="comm-field" placeholder="ایمیل" required />
+                  </div>
+                  <div class="col-lg-4 margin-b32">
+                    <input type="text" name="subject" class="comm-field" placeholder="موضوع" required />
+                  </div>
+                </div>
+                <div class="margin-b32">
+                  <textarea name="message" id="msg-contact" rows="5" placeholder="پیام" required></textarea>
+                </div>
+                <p>
+                  <input type="submit" value="ارسال" id="submit" />
+                </p>
+              </form>
+            </div>
+            <!-- contact-form-holder -->
+            <div id="output-contact"></div>
+          </div>
+        </div>
+        <!-- /row -->
+      </div>
+      <!-- /container -->
+    </section>
+    <!-- /SECTION 5 -->
+
+    <section class="maps-fullwidth">
+      <div class="gmaps">{{ info.google_map|safe }}</div>
+    </section>
+  </div>
+  <!-- /PAGE CONTENT -->
+{% endblock %}

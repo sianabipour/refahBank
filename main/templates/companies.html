@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+  <!-- TOP IMAGE -->
+  <div class="page-head">
+    <div class="inner-desc">
+      <div class="container">
+        <h1 class="page-title">سازمان‌ها</h1>
+      </div>
+    </div>
+  </div>
+  <!-- /TOP IMAGE -->
+
+  <section class="section-holder margin-b32" dir="rtl">
+    <div class="container">
+      <div class="row">
+        {% for company in objs %}
+          <div class="col-md-6 col-lg-3">
+            <div class="practice-item-v2">
+              <a href="{% url 'company' company.pk %}">
+                <div class="post-image border border-main rounded p-4">
+                  <img style="max-width: 200px;height: 200px;" src="{{ company.image.url }}" class="img-fluid" alt="{{ company.name }}" />
+                </div>
+              </a>
+              <h5 class="practice-title-v2"><a href="{% url 'company' company.pk %}">{{ company.name }}</a></h5>
+              <div class="practice-excerpt">{{ company.description|truncatewords:20 }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- /PAGE CONTENT -->
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+  <!-- HOME SLIDER -->
+  <div class="slider-container">
+    <div class="owl-carousel owl-theme home-slider">
+      {% for slider in sliders %}
+        <div class="slider-post slider-item-box">
+          <img class="img-fluid" src="{{ slider.image.url }}" alt="{{ slider.name }}" />
+          <div class="slider-caption">
+            <div class="slider-text">
+              <h2>{{ slider.name }}</h2>
+              <h5 class="subtitle-banner">{{slider.subtext|safe}}</h5>
+              <a class="btn-white" href="{{ slider.link }}">بیشتر</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <!-- /HOME SLIDER -->
+  <!-- PAGE CONTENT -->
+  <div class="page-holder custom-page-template page-full fullscreen-page home-page-content clearfix">
+    <!-- SECTION 1 -->
+    <section class="section-holder alignc">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2" dir="rtl">{{ info.home_content|safe }}</div>
+        </div>
+        <!-- /row -->
+      </div>
+      <!-- /container -->
+    </section>
+    <!-- /SECTION 1 -->
+    <!-- SECTION 2 -->
+    <section class="section-holder" dir="rtl">
+      <div class="container">
+        <div class="row practice-items-holder-v2">
+          {% for company in objs %}
+            <div class="col-lg-4 col-md-6">
+              <div class="practice-item-v2">
+                <a href="{% url 'company' company.pk %}">
+                  <div class="post-image border border-main rounded p-4">
+                    <img style="max-width: 200px;height: 200px;" src="{{ company.image.url }}" class="img-fluid" alt="{{ company.name }}" />
+                  </div>
+                </a>
+                <h5 class="practice-title-v2"><a href="{% url 'company' company.pk %}">{{ company.name }}</a></h5>
+                <div class="practice-excerpt">{{ company.description|truncatewords:20 }}</div>
+                <a class="read-more" href="{% url 'company' company.pk %}">بیشتر</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <!-- /row -->
+      </div>
+    </section>
+    <!-- /SECTION 2 -->
+    <!-- SECTION 5 -->
+    <section class="parallax section-holder section-home35" style="background-image:url('{% static 'images/mobileBefore.jpg' %}');">
+      <div class="container parallax-content">
+        <div class="row">
+          <div class="col-lg-10 offset-lg-1 alignc" dir="rtl">
+            <span class="heading-subtitle white">ارسال درخواست</span>
+            <h2 class="section-heading-title">درخواست خود را برای ما بفرستید</h2>
+            <div id="contact-form-holder text-right">
+              <form method="post" id="contact-form">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-lg-4 margin-b32">
+                    <input type="text" name="name" class="comm-field" placeholder="نام و نام خانوادگی" required />
+                  </div>
+                  <div class="col-lg-4 margin-b32">
+                    <input type="text" name="email" class="comm-field" placeholder="ایمیل" required />
+                  </div>
+                  <div class="col-lg-4 margin-b32">
+                    <input type="text" name="subject" class="comm-field" placeholder="موضوع" required />
+                  </div>
+                </div>
+                <div class="margin-b32">
+                  <textarea name="message" id="msg-contact" rows="5" placeholder="پیام" required></textarea>
+                </div>
+                <p>
+                  <input type="submit" value="ارسال" id="submit" />
+                </p>
+              </form>
+            </div>
+            <!-- contact-form-holder -->
+            <div id="output-contact"></div>
+          </div>
+        </div>
+        <!-- /row -->
+      </div>
+      <!-- /container -->
+    </section>
+    <!-- /SECTION 5 -->
+    <section class="maps-fullwidth">
+      <div class="gmaps">{{ info.google_map|safe }}</div>
+    </section>
+  </div>
+  <!-- /PAGE CONTENT -->
+{% endblock %}

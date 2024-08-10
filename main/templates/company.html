@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+  <!-- PAGE CONTENT -->
+  <div class="mt-5 page-holder custom-page-template page-full fullscreen-page clearfix text-right" dir="rtl">
+    <!-- SECTION 1 -->
+    <section class="section-holder">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <img src="{{ obj.image.url }}" style="max-width: 200px;height: 200px;" class="img-fluid d-block mx-auto margin-b32" alt="{{ obj.name }}" />
+            {% if obj.founder %}
+              <div class="pcolor margin-b16">مدیر عامل</div>
+              <h5 class="widgettitle">{{ obj.founder }}</h5>
+              <hr />
+            {% endif %}
+            {% if obj.phone %}
+              <div class="pcolor margin-b16">شماره تماس</div>
+              <em>{{ obj.phone }}</em>
+            {% endif %}
+            {% if obj.link %}
+              <a href="{{ obj.link }}" class="d-block mt-3">لینک سایت</a>
+            {% endif %}
+          </div>
+          <div class="col-lg-8">
+            <h3 class="mb-3">{{ obj.name }}</h3>
+            {{ obj.content|safe }}
+          </div>
+        </div>
+        <!-- /row -->
+      </div>
+      <!-- /container -->
+    </section>
+    <!-- /SECTION 1 -->
+    {% if obj.subs.count != 0 %}
+      <!-- SECTION 2 -->
+      <section class="section-holder">
+        <h3 class="text-center">زیر مجموعه ها</h3>
+        <div class="row practice-items-holder-v2">
+          {% for company in obj.subs.all %}
+            <div class="col-lg-3 col-md-6">
+              <div class="practice-item-v2">
+                <a href="{% url 'company' company.pk %}">
+                  <div class="post-image">
+                    <img style="max-width: 200px;height: 200px;" src="{{ company.image.url }}" class="img-fluid" alt="{{ company.name }}" />
+                  </div>
+                </a>
+                <h5 class="practice-title-v2"><a href="{% url 'company' company.pk %}">{{ company.name }}</a></h5>
+                <div class="practice-excerpt">{{ company.description|truncatewords:20 }}</div>
+                <a class="read-more" href="{% url 'company' company.pk %}">بیشتر</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <!-- /row -->
+      </section>
+      <!-- /SECTION 2 -->
+    {% endif %}
+  </div>
+  <!-- /PAGE CONTENT -->
+{% endblock %}

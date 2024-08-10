@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US">
+	
+<!-- Mirrored from matchthemes.com/demohtml/lawyers/home-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 Jul 2024 16:44:36 GMT -->
+<head>
+		
+		<meta charset="utf-8">
+		<title>{{info.title}}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="robots" content="noodp"/>
+		<link href="{% static 'fonts.googleapis.com/css27aa.css' %}" rel='stylesheet' type='text/css'>
+		<!-- Bootstrap CSS -->
+		<link rel='stylesheet' id='bootstrap-css'  href="{% static 'css/bootstrap/css/bootstrap.css' %}" type='text/css' media='all' />
+		<!-- Font Awesome Icons CSS -->
+		<link rel='stylesheet' id='font-awesome'  href="{% static 'css/fontawesome/css/all.min.css' %}" type='text/css' media='all' />
+		<!-- Owl Carousel -->
+		<link rel='stylesheet' id='owl-carousel'  href="{% static 'js/owl-carousel/owl.carousel.css' %}" type='text/css' media='all' />
+		<!-- Main CSS File -->
+		<link rel='stylesheet' id='lawyers-style-css'  href="{% static 'style.css' %}" type='text/css' media='all' />
+		<!-- favicons -->
+		<link rel="icon" href="{% static 'images/icons/favicon.ico' %}" />
+		<link rel="refah-bank" href="{% static 'images/icons/favicon-180x180.png' %}" />
+	</head>
+	<body>
+		<div class="menu-mask"></div>
+		<!-- MOBILE MENU HOLDER -->
+		<div class="mobile-menu-holder">
+			<div class="modal-menu-container">
+				<div class="exit-mobile"> <span class="icon-bar1"></span> <span class="icon-bar2"></span></div>
+				<ul class="menu-mobile text-right">
+					<li class="menu-item {% if request.resolver_match.url_name == 'home' %}current-menu-item{% endif %}">
+						<a href="{% url "home" %}" >صفحه اصلی</a>
+					</li>
+					<li class="menu-item {% if request.resolver_match.url_name == 'companies' %}current-menu-item{% endif %}">
+						<a href="{% url "companies" %}" >سازمان‌ها</a>
+					</li>
+					<li class="menu-item {% if request.resolver_match.url_name == 'about' %}current-menu-item{% endif %}">
+						<a href="{% url "about" %}" >درباره‌ما</a>
+					</li>
+				</ul>
+			</div>
+			<div class="menu-contact">
+				<ul>
+					<li><i class="fa fa-map-marker" style="margin-left: 8px;margin-right: 0;"></i><div>{{info.address}}</div></li>
+					<li><span>{{info.phone}}</span><i class="fa fa-mobile" style="margin-left: 8px;margin-right: 0;"></i></li>
+					<li><span><a href="mailto:{{info.email}}" class="__cf_email__">ارسال ایمیل</a></span><i class="fa fa-envelope" style="margin-left: 8px;margin-right: 0;"></i></li>
+				</ul>
+				<ul class="social-media">
+					<li><a class="social-facebook" href="{{info.instagram}}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+					<li><a class="social-twitter" href="{{info.twitter}}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+					<li><a class="social-linkedin" href="{{info.linkedin}}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /MOBILE MENU HOLDER -->
+		<!-- HEADER -->
+		<header id="header-bar" class="header-1">
+			<div class="container">
+				<div class="header-wrap header-wrap1" dir="rtl">
+					<div class="logo logo-1"><a href="{% url 'home' %}"><img class="img-fluid"  src="{{info.logo.url}}" alt="Lawyers"></a></div>
+					<div class="header-contact">
+						<div class="header-info"><span class="info-circle"><i class="fa fa-phone"></i></span><span style="color:black;">{{info.phone}}</span></div>
+						<div class="header-info"><span class="info-circle"><i class="fa fa-envelope"></i></span> <a href="mailto:{{info.email}}" class="__cf_email__">ارسال ایمیل</a></div>
+					</div>
+					<div class="nav-button-holder"> <button type="button" class="nav-button"> <span class="icon-bar"></span> </button></div>
+				</div>
+				<div class="nav-holder nav-holder-1">
+					<ul class="menu-nav  menu-nav-1">
+						<li class="menu-item {% if request.resolver_match.url_name == 'home' %}current-menu-item{% endif %}">
+							<a href="{% url "home" %}" >صفحه اصلی</a>
+						</li>
+						<li class="menu-item {% if request.resolver_match.url_name == 'companies' %}current-menu-item{% endif %}">
+							<a href="{% url "companies" %}" >سازمان‌ها</a>
+						</li>
+						<li class="menu-item {% if request.resolver_match.url_name == 'about' %}current-menu-item{% endif %}">
+							<a href="{% url "about" %}" >درباره‌ما</a>
+						</li>	
+					</ul>
+				</div>
+			</div>
+		</header>
+		<!-- /HEADER -->
+        {% block body %}
+        {% endblock body %}
+		<!-- FOOTER -->
+		<footer id="footer-var2">
+			<div id="footer-content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="foo-block">
+								<h5 class="widgettitle">درباره‌ما</h5>
+								<div class="textwidget">
+									<div class="textwidget">
+										<p>{{info.footer_text}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="foo-block">
+								<h5 class="widgettitle">ارتباط‌با‌ما</h5>
+								<div class="textwidget">
+									<div class="textwidget">
+										<p>{{info.address}}</p>
+										<p>{{info.phone}}<br> <a href="mailto:{{info.email}}" class="__cf_email__">ارسال ایمیل</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="foo-block">
+								<h5 class="widgettitle">دسترسی‌ها</h5>
+								<div class="textwidget custom-html-widget">
+									<ul>
+										<li> <a href="{% url "home" %}">صفحه اصلی</a></li>
+										<li><a href="{% url "companies" %}">سازمان‌ها</a></li>
+										<li><a href="{% url "about" %}">درباره‌ما</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<ul class="footer-social alignc">
+						<li><a class="social-facebook" href="{{info.instagram}}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+						<li><a class="social-twitter" href="{{info.twitter}}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+						<li><a class="social-linkedin" href="{{info.linkedin}}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+					</ul>
+					<div class="foo-copyright alignc">Copyright &copy; 2024. Designed by Siavash Nabipour</div>
+				</div>
+			</div>
+		</footer>
+		<!-- /FOOTER -->
+		<div class="scrollup"> <a class="scrolltop" href="#"> <i class="fa fa-chevron-up"></i> </a></div>
+		<!-- JS --> 
+		<script data-cfasync="false"  src="{% static '../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script><script  src="{% static 'js/jquery.js' %}"></script>
+		<script  src="{% static 'js/jquery-migrate.min.js' %}"></script>
+		<script  src="{% static 'css/bootstrap/js/popper.js' %}"></script>
+		<script  src="{% static 'css/bootstrap/js/bootstrap.js' %}"></script>
+		<script  src="{% static 'js/easing.js' %}"></script>
+		<script  src="{% static 'js/fitvids.js' %}"></script>
+		<script  src="{% static 'js/owl-carousel/owl.carousel.js' %}"></script>
+		<script  src="{% static 'js/isotope.js' %}"></script>
+		<script  src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+		<!-- MAIN JS -->
+		<script  src="{% static 'js/init.js' %}"></script>
+		<!-- CONTAT FORM JS -->
+		<script  src="{% static 'js/jquery.form.min.js' %}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		
+		{% if error %}
+		<script>
+			Swal.fire({
+				title: "خطا!",
+				text: "{{error}}!",
+				icon: "error"
+			  });
+		</script>
+		{% endif %}
+		{% if success %}
+		<script>
+			Swal.fire({
+				title: "{{success}}!",
+				icon: "success"
+			  });
+		</script>
+		{% endif %}
+
+	</body>
+
+<!-- Mirrored from matchthemes.com/demohtml/lawyers/home-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 Jul 2024 16:48:24 GMT -->
+</html>
